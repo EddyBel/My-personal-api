@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Math my",
+    "description": "Math-my is a basic cross-platform desktop calculator, based on web technologies, with a neomorphism style design, it has two themes, light and dark.",
+    "background": "banner_math_my.png",
+    "github": "https://github.com/EddyBel/Math-my"
+  },
+  {
+    "name": "Plane Wars (Game Pygame)",
+    "description": "This pygame is based on a spaceship that has to dodge and destroy asteroids. The player has a life bar and a destroyed asteroid counter, pilot your ship and see how long you can survive in this challenging outer space!",
+    "background": "banner_plane_wars.jpg",
+    "github": "https://github.com/EddyBel/Plane-Wars-Game-Pygame"
+  },
+  {
+    "name": "Notebook",
+    "description": "The project is about a website where I can store and display my notes in an easy and simple way. Note files are in markdown and markdown-react format",
+    "background": "banner_notebook.jpg",
+    "github": "https://github.com/EddyBel/Notebook",
+    "web": "https://eddybel.github.io/Notebook/"
+  }
+]

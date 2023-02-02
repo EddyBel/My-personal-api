@@ -1,0 +1,25 @@
+{
+  "skills": {
+    "languages": [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "C++",
+      "Java",
+      "C#",
+      "Rust"
+    ],
+    "frameworks_and_tools": [
+      "React",
+      "View",
+      "Angular",
+      "Electron",
+      "Flask",
+      "Django",
+      "NodeJs",
+      "Tauri"
+    ],
+    "other_skills": ["english", "team working"]
+  },
+  "hoobies": ["Gym", "MMA", "Reading", "Cooking"]
+}

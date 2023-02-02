@@ -127,3 +127,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Environtment vars
+env/
+.env
+
+# Pycache
+app/__pycache__/
+app/routes/__pycache__/
+app/models/__pycache__/
+app/services/__pycache__/
+
+util/__pycache__/
+
+config/__pycache__/
