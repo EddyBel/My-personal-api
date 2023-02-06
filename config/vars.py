@@ -9,7 +9,8 @@ ROOT_DIR = path.dirname(getcwd())
 # Base name used by the api.
 NAME_BASE_API = "Eduardo"
 # List of permitted sites
-WHITE_LIST = ["http://localhost:5050", "https://eduardorangel.netlify.app"]
+WHITE_LIST = ["http://localhost:5050", "127.0.0.1:5050",
+              "https://eduardorangel.netlify.app"]
 
 
 # -------------------------------------- List of routes in the api

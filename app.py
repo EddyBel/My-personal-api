@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, make_response
 from flask_cors import CORS
 from app.routes.about import about_pages
 from app.routes.static import files_statics
@@ -14,7 +14,22 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app, origins=WHITE_LIST)
 
+
+@app.before_request
+def before_request():
+    """This function handles OPTIONS type requests.
+
+    Returns:
+        (Response): Returns the verified response to a request.
+    """
+    if request.method == "OPTIONS":
+        response = make_response()
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "X-Token"
+        return response, 200
+
 # ----------------------------------------- Registration of available pages
+
 
 app.register_blueprint(index_page, url_prefix="/api")
 app.register_blueprint(about_pages, url_prefix="/api/personal")
