@@ -157,9 +157,12 @@ def getAboutProyects():
         for proyect in content:
            # Create the path to the project images
             name_image = proyect["background"]
-            host = request.host_url
-            base_path = f"{host}api/assets/img/{name_image}"
-            proyect["background"] = base_path
+            if "https://" in name_image or "http://" in name_image:
+                pass
+            else:
+                host = request.host_url
+                base_path = f"{host}api/assets/img/{name_image}"
+                proyect["background"] = base_path
 
         # Content of the api
         response = jsonify({"msg": "Successful", "body": content})

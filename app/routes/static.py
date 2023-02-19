@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify, send_from_directory, send_file
+from config.env import USER_GITHUB, REPO_NOTES
 from os import path
 from config.vars import ROOT_DIR
+import requests
+import tempfile
 
 files_statics = Blueprint('files_statics', __name__)
 
@@ -36,7 +39,7 @@ def getToIMGS(filename: str):
         return response
 
 
-@ files_statics.route("/docs/<path:filename>", methods=['GET'])
+@files_statics.route("/docs/<path:filename>", methods=['GET'])
 def getToDocs(filename: str):
     """This path allows access to the project documents, these documents are passed as a parameter of the url.
 
@@ -67,7 +70,7 @@ def getToDocs(filename: str):
         return response
 
 
-@ files_statics.route("/web/<path:filename>", methods=['GET'])
+@files_statics.route("/web/<path:filename>", methods=['GET'])
 def getToCode(filename: str):
     """This path allows access to images in the project, these images are passed as a parameter of the url.
 
@@ -91,6 +94,43 @@ def getToCode(filename: str):
             "msg": "Code not found",
             "image": f"{filename} image not found",
             "path_file": filename
+        })
+        response.headers.set(
+            'Content-Type', 'application/json; charset=utf-8')
+        response.status_code = 401
+        return response
+
+
+@files_statics.route("/note/<string:matter>/<string:folder>/<string:filename>", methods=['GET'])
+def getIMGByNote(matter: str, folder: str, filename: str):
+    """This path allows access to images in the project, these images are passed as a parameter of the url.
+
+    Args:
+        filename (str): Name of the file to search.
+
+    Returns:
+        (Response): It can be the requested image if it is found or an error message in json format if it is not found.
+    """
+
+    try:
+        # Create the github api request to get the image requested by specific repository parameters
+        github__response = requests.get(
+            f"https://raw.githubusercontent.com/{USER_GITHUB}/{REPO_NOTES}/main/{matter}/{folder}/{filename}")
+        # If the request gets a 404 code, it throws an error to the route.
+        if github__response.status_code == 404:
+            raise Exception("Image not found")
+        # Create a temporary file to display the image obtained from the api.
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        temp_file.write(github__response.content)
+        temp_file.close()
+        # Send the file to the api
+        return send_file(temp_file.name, mimetype='image/jpeg')
+    except:
+        # Error message to response api
+        response = jsonify({
+            "msg": "Image not found",
+            "image": f"{filename} image not found",
+            "name": filename
         })
         response.headers.set(
             'Content-Type', 'application/json; charset=utf-8')

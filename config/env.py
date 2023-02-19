@@ -4,6 +4,8 @@ from os import getenv
 # Shit all environment variables.
 load = load_dotenv()
 
+USER_GITHUB = getenv("USER_GITHUB")
+
 # ------------------------------------ Stores environment variables.
 
 SECRET_KEY_ENCODE = getenv("SECRET_KEY")
@@ -19,8 +21,15 @@ SECRET_EMAILS_ADDRESSEE = getenv("EMAILS_ADDRESSEE")
 # ------------------------------------- WEB CONFIG
 
 # Web port
-PORT = getenv("PORT")
+PORT = getenv("PORT") if getenv("PORT") else 3000
 # Development
-DEVELOPMENT = getenv("DEBUG") if getenv("DEBUG") else True
+DEVELOPMENT = getenv("DEBUG") if getenv("DEBUG") else False
 # hosting
 HOST = getenv("HOST") if getenv("HOST") else "0.0.0.0"
+
+# ------------------------------------- Notes config
+
+REPO_NOTES = getenv("REPO_NOTES")
+
+# ------------------------------------- Database config
+MONGO = getenv("MONGO")

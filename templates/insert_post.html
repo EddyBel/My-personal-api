@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/lux/bootstrap.min.css"
+      integrity="sha512-+TCHrZDlJaieLxYGAxpR5QgMae/jFXNkrc6sxxYsIVuo/28nknKtf9Qv+J2PqqPXj0vtZo9AKW/SMWXe8i/o6w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      #alert {
+        position: fixed;
+        left: 15px;
+        top: 15px;
+        transform: translateY(-150%);
+        transition: all 400ms;
+        z-index: 9999;
+      }
+
+      .img-preview {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+    </style>
+    <title>Insert Post</title>
+  </head>
+  <body style="overflow-x: hidden">
+    <div
+      class="toast show"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      id="alert"
+    >
+      <div class="toast-header">
+        <strong class="me-auto">Susscefull Send Post</strong>
+        <small id="alert-date">11 mins ago</small>
+        <!-- <button
+          type="button"
+          class="btn-close ms-2 mb-1"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"></span>
+        </button> -->
+      </div>
+      <div class="toast-body" id="text-alert">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+      "
+    >
+      <div class="row g-3" style="max-width: 600px">
+        <div class="card">
+          <div class="card-header">
+            <h1 style="text-align: center">File post</h1>
+          </div>
+          <div class="card-body">
+            <p class="lead">
+              You can upload markdown files, these files are the posts written
+              in markdown files.
+            </p>
+            <div class="form-group">
+              <label for="formFile" class="form-label mt-4"
+                >Select the markdown file of the post</label
+              >
+              <input
+                class="form-control"
+                type="file"
+                id="input_post_by_file"
+                title="input_markdown"
+              />
+            </div>
+            <div class="form-group">
+              <label for="formFile" class="form-label mt-4"
+                >Select the images your post needs.</label
+              >
+              <input
+                class="form-control"
+                type="file"
+                id="input_post_images_by_files"
+                onchange="onHandleAddImages()"
+                title="input_images"
+                accept="images"
+                multiple
+              />
+            </div>
+
+            <ul
+              style="margin: 20px"
+              class="list-group"
+              id="list_files_imgs"
+            ></ul>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              style="width: 100%"
+              id="submit-files-of-post"
+            >
+              Send files
+            </button>
+          </div>
+        </div>
+        <!-- <div class="card">
+          <div class="card-header">
+            <h1 style="text-align: center">Write the post</h1>
+          </div>
+          <div class="card-body">
+            <p class="lead">In this form you can write your post</p>
+            
+            <div class="col-md">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title-post"
+                  placeholder="Title of post"
+                />
+                <label for="floatingInputGrid">Post title</label>
+              </div>
+            </div>
+            <div class="row g-2" style="margin-top: 20px; margin-bottom: 20px">
+              
+              <div class="col-md">
+               
+                <div class="form-floating">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date-post"
+                    placeholder="name@example.com"
+                  />
+                  <label for="floatingInputGrid">Date of post</label>
+                </div>
+                
+              </div>
+              
+              <div class="col-md">
+               
+                <div class="form-floating">
+                  <select
+                    class="form-select"
+                    id="level-post"
+                    aria-label="Floating label select example"
+                  >
+                    <option selected>Enter the post level</option>
+                    <option value="1">Basic</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Complex</option>
+                  </select>
+                  <label for="floatingSelect"
+                    >Indicates the level of the post.</label
+                  >
+                </div>
+                
+              </div>
+              
+            </div>
+           
+            <div class="form-floating">
+              <ul
+                class="list-group"
+                style="margin-bottom: 12px"
+                id="list-tags"
+              ></ul>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter the tagname"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                  id="input-tag-name"
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-remove-tag"
+                >
+                  Remove tag
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-add-tag"
+                >
+                  Add tag
+                </button>
+              </div>
+            </div>
+            <h2>Article content</h2>
+            <p>Here you can add paragraphs and content to your post.</p>
+         
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                placeholder="Leave a comment here"
+                id="post-content"
+                style="height: 300px; resize: none"
+              ></textarea>
+              <label for="floatingTextarea2">Post content</label>
+            </div>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              style="width: 100%; margin-top: 30px"
+            >
+              Submit an article
+            </button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <!-- This function handles how the tagsnames are added. -->
+    <!-- <script src="/api/assets/web/js/AddTasg.js"></script> -->
+    <!-- This function sibmit images -->
+    <script src="/api/assets/web/js/RenderImages.js"></script>
+    <!-- This function sends data to the backend -->
+    <!-- <script src="/api/assets/web/js/SendPost.js"></script> -->
+    <script src="/api/assets/web/js/SendPostArchives.js"></script>
+  </body>
+</html>

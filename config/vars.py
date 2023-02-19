@@ -11,7 +11,10 @@ NAME_BASE_API = "Eduardo"
 # List of permitted sites
 WHITE_LIST = ["http://localhost:5050", "127.0.0.1:5050",
               "https://eduardorangel.netlify.app"]
-
+# Valid file extensions
+EXTENSIONS_POSTS = [".md", ".mdx"]
+# Valid extension in images
+EXTENSIONS_IMAGES = [".png", ".jpg", "jpeg"]
 
 # -------------------------------------- List of routes in the api
 

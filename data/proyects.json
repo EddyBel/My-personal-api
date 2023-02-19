@@ -8,13 +8,13 @@
   {
     "name": "Plane Wars (Game Pygame)",
     "description": "This pygame is based on a spaceship that has to dodge and destroy asteroids. The player has a life bar and a destroyed asteroid counter, pilot your ship and see how long you can survive in this challenging outer space!",
-    "background": "banner_plane_wars.jpg",
+    "background": "https://raw.githubusercontent.com/EddyBel/Plane-Wars-Game-Pygame/main/assets/docs/capture%20(6).png",
     "github": "https://github.com/EddyBel/Plane-Wars-Game-Pygame"
   },
   {
     "name": "Notebook",
     "description": "The project is about a website where I can store and display my notes in an easy and simple way. Note files are in markdown and markdown-react format",
-    "background": "banner_notebook.jpg",
+    "background": "https://raw.githubusercontent.com/EddyBel/Notebook/main/assets/docs/Capture.png",
     "github": "https://github.com/EddyBel/Notebook",
     "web": "https://eddybel.github.io/Notebook/"
   }

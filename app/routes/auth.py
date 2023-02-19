@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, send_file
 from util.tokens import create_tocken
 from config.env import SECRET_ROOT_USERNAME, SECRET_ROOT_PASSWORD
 from bcrypt import gensalt, hashpw, checkpw
@@ -45,3 +45,16 @@ def obtainAuthentication():
         response.headers.set('Content-Type', 'application/json; charset=utf-8')
         response.status_code = 401
         return response
+
+
+# @auth_pages.route("/login-html", methods=["GET"])
+# def authenticationByForm():
+#     return send_file("templates/login.html")
+
+
+# @auth_pages.route("/login-html", methods=["POST"])
+# def authenticationByFormPost():
+#     body = request.json
+#     print(body)
+
+#     return jsonify({"msg": "Susscefull", "body": body})

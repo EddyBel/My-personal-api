@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/lux/bootstrap.min.css"
+      integrity="sha512-+TCHrZDlJaieLxYGAxpR5QgMae/jFXNkrc6sxxYsIVuo/28nknKtf9Qv+J2PqqPXj0vtZo9AKW/SMWXe8i/o6w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Autentication</title>
+  </head>
+  <body
+    style="
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <div class="card text-white bg-primary mb-3" style="min-width: 35rem">
+      <div class="card-header">
+        <h2 style="text-align: center">Authentication</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="form-label mt-4"
+            >Username</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="username"
+            aria-describedby="emailHelp"
+            placeholder="Enter username"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >Enter the username to use the website.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="form-label mt-4"
+            >Password</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="password"
+            aria-describedby="emailHelp"
+            placeholder="Enter password"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >Enter the password to use the website.</small
+          >
+        </div>
+        <button
+          type="button"
+          class="btn btn-light"
+          style="margin-top: 30px; width: 100%"
+          id="button-login-in"
+        >
+          login in
+        </button>
+      </div>
+    </div>
+    <script>
+      const button = document.getElementById("button-login-in");
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      button.addEventListener("click", () => {
+        const url = window.location.href;
+        console.log(url);
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+          }),
+        });
+      });
+    </script>
+  </body>
+</html>

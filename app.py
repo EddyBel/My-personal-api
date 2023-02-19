@@ -5,6 +5,8 @@ from app.routes.static import files_statics
 from app.routes.auth import auth_pages
 from app.routes.index import index_page
 from app.routes.message import message_pages
+from app.routes.blog import blog_page
+from app.routes.notes import notes_page
 from config.vars import WHITE_LIST
 from config.env import HOST, PORT, DEVELOPMENT
 
@@ -36,9 +38,11 @@ app.register_blueprint(about_pages, url_prefix="/api/personal")
 app.register_blueprint(files_statics, url_prefix="/api/assets")
 app.register_blueprint(auth_pages, url_prefix="/api/auth")
 app.register_blueprint(message_pages, url_prefix="/api/message")
-
+# app.register_blueprint(blog_page, url_prefix="/api/blog")
+app.register_blueprint(notes_page, url_prefix="/api/notes")
 
 # ------------------------------------------ Redirect pages
+
 
 @app.route('/', methods=['GET'])
 def initAPI():
