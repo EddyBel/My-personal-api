@@ -10,8 +10,19 @@ from functools import wraps
 
 blog_page = Blueprint('blog_page', __name__)
 
-#! TODO TERMINA LAS FUNCIONES PARA OBTENER LOS BLOGS
-# * TODO TERMINA LAS FUNCIONES PARA INSERTAR POST A MYSQL, SQL Y FIREBASE
+#! TODO LA FUNCION DE MONGO NO ESTA TESTEADA AUN
+""" 
+TODO TERMINA LAS FUNCIONES PARA INSERTAR POST A MYSQL, SQL Y FIREBASE
+
+- Se debe crear una funcion en los archivos de autenticacion para validar el usuario y el password
+- Esta funcion de validacion dirige a un template html con el formulario de autenticacion
+- Termina de conectar la base de datos segun se pueda
+- Primero mongo
+- Segundo MySQL
+- Tercero Firebase
+- Cuarto archivos locales
+
+"""
 
 
 def login_required(f):

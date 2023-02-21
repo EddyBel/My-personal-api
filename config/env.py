@@ -4,7 +4,10 @@ from os import getenv
 # Shit all environment variables.
 load = load_dotenv()
 
+# ------------------------------------ Github
+
 USER_GITHUB = getenv("USER_GITHUB")
+TOKEN_GITHUB = getenv("TOKEN_GITHUB")
 
 # ------------------------------------ Stores environment variables.
 

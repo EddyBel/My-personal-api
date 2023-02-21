@@ -1,11 +1,12 @@
-from flask import Blueprint, jsonify, send_from_directory, send_file
-from config.env import USER_GITHUB, REPO_NOTES
-from os import path
-from config.vars import ROOT_DIR
+from flask import Blueprint, jsonify, send_file
+from config.env import USER_GITHUB, REPO_NOTES, TOKEN_GITHUB
+from app.services.github import GITHUB
 import requests
 import tempfile
 
 files_statics = Blueprint('files_statics', __name__)
+
+github = GITHUB(USER_GITHUB, TOKEN_GITHUB)
 
 
 @files_statics.route("/img/<path:filename>", methods=['GET'])
@@ -114,15 +115,13 @@ def getIMGByNote(matter: str, folder: str, filename: str):
 
     try:
         # Create the github api request to get the image requested by specific repository parameters
-        github__response = requests.get(
-            f"https://raw.githubusercontent.com/{USER_GITHUB}/{REPO_NOTES}/main/{matter}/{folder}/{filename}")
-        # If the request gets a 404 code, it throws an error to the route.
-        if github__response.status_code == 404:
-            raise Exception("Image not found")
+        response = github.get_data(f"https://raw.githubusercontent.com/{USER_GITHUB}/{REPO_NOTES}/main/{matter}/{folder}/{filename}", "content")
+        
         # Create a temporary file to display the image obtained from the api.
         temp_file = tempfile.NamedTemporaryFile(delete=False)
-        temp_file.write(github__response.content)
+        temp_file.write(response)
         temp_file.close()
+        
         # Send the file to the api
         return send_file(temp_file.name, mimetype='image/jpeg')
     except:

@@ -14,6 +14,7 @@ ARG EMAIL_SENDER=example@gmail.com
 ARG PASSWORD_SENDER=123456
 ARG EMAILS_ADDRESSEE=example@gmail.com
 ARG USER_GITHUB=username
+ARG TOKEN_GITHUB=user_token
 ARG REPO_NOTES=name_repository
 
 # Copy the requirements for the app to work correctly.
